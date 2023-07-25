@@ -8,7 +8,8 @@ T1.orglev4_name
 ,T1.curr_comp_type
 ,T1.curr_comp_status
 FROM crc.bi_wellcomp_v_current_state AS T1
-WHERE T1.orglev4_name LIKE '%ANT HILL AREA%'
+WHERE T1.orglev4_name LIKE '%YOWLUMNE%'
+ORDER BY T1.orglev4_name ASC
 
 /*
 OR T1.orglev4_name LIKE '%BELGIAN ANTICLINE%'
