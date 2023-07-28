@@ -1,8 +1,23 @@
- SELECT 
-		oil_prod
-		,api_no14
-  FROM crc.bi_monthly_volumes
-  --WHERE oil_prod > 0
-		--and api_no14 = '04029633720000'
-  ORDER BY prod_inj_date DESC
-  LIMIT 3
+--Objective: pull production data for a well predefined api list 
+SELECT 
+T1.orglev4_name
+,T1.wellcomp_name
+,T1.automation_name
+,T1.api_no14
+,T1.curr_comp_type
+,T1.curr_method_prod
+,T1.curr_comp_status
+,T2.prod_inj_date
+,T2.days_prod
+,T2.oil_prod as oil_prod_MV
+,T2.water_prod as water_prod_MV
+,T2.owg_prod as gas_prod_MV
+,ROUND((T2.oil_prod/30.4)) as oil_prod_bopd
+,ROUND((T2.water_prod/30.4)) as water_prod_bopd
+,ROUND((T2.owg_prod/30.4)) as gas_prod_mcf
+FROM crc.bi_wellcomp_v_current_state AS T1
+JOIN crc.bi_monthly_volumes AS T2 On T1.api_no14 = T2.api_no14
+WHERE T1.orglev4_name LIKE '%PLEITO%'
+	--T1.api_no14 IN ('04029633720000')
+ORDER BY T1.api_no14 ASC, T2.prod_inj_date DESC
+--LIMIT 1000
