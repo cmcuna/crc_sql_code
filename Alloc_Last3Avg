@@ -1,0 +1,8 @@
+ SELECT 
+		oil_prod
+		,api_no14
+  FROM crc.bi_monthly_volumes
+  --WHERE oil_prod > 0
+		--and api_no14 = '04029633720000'
+  ORDER BY prod_inj_date DESC
+  LIMIT 3
